@@ -1,0 +1,28 @@
+# Alchemist
+/env/*.toml
+**/*.log
+
+# Docker
+**/docker-compose.yml
+**/dockerfile
+**/dbms/
+/data/
+/env/
+
+# Obj, dynamic or temp files
+**/*.tsbuildinfo
+**/next-env.d.ts
+**/node_modules/
+**/.env*
+**/coverage/
+**/.vercel/
+**/.pnp.js
+**/.yarn/
+**/.next/
+**/build/
+**/*.log*
+**/.pnp
+
+
+
+
