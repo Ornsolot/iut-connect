@@ -5,7 +5,6 @@
 # Docker
 **/docker-compose.yml
 **/dockerfile
-**/dbms/
 /data/
 /env/
 
