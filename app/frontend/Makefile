@@ -13,10 +13,10 @@
 ## Name and Path of the executable/project.
 ###########################################
 NAME	= ${PROJ}_${TRG}
-DIR		= ./src
-ENV		= $(DIR)/.env
-EXE		= dockerfile
-TRG		= $(shell basename $(shell pwd))
+DIR	= ./src
+ENV	= $(DIR)/.env
+EXE	= dockerfile
+TRG	= $(shell basename $(shell pwd))
 
 ##################
 ## ENV VARIABLE ##
@@ -26,13 +26,13 @@ TRG		= $(shell basename $(shell pwd))
 ############
 HOST	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^$(patsubst '%',%, $(shell sed -nr "/^\[${TRG}\]/ { :l /^Host[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
 CARD	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^Card[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
-HUB		= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^User[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
+HUB	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^User[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
 
 ## [DOCKER]
 ###########
 PORT	= $(shell sed -nr "/^\[$(TRG)\]/ { :l /^Port[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI))
-IMG		= node
-TAG		= alpine
+IMG	= node
+TAG	= alpine
 
 ######################
 ## MAKEFILE VARIABLE #
