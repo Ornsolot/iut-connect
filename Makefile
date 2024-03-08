@@ -12,21 +12,21 @@
 
 ## Name of the umbrella & Path of the service(s) et env folder.
 #################################################################
-EXE		= docker-compose.yml
-TRG		= iut-connect
-DIR		= ./app
-ENV		= ./env
+EXE	= docker-compose.yml
+TRG	= iut-connect
+DIR	= ./app
+ENV	= ./env
 
 ## Name of the file(s) to parse for initialisation of each services.
 ####################################################################
-INI		= $(ENV)/$(TRG).toml
-LOG		= $(ENV)/$(TRG).log
+INI	= $(ENV)/$(TRG).toml
+LOG	= $(ENV)/$(TRG).log
 
 ## Git variables.
 #################
 BRANCH	= $(shell git rev-parse --abbrev-ref HEAD)
 COMMIT	= $(shell git rev-parse --abbrev-ref HEAD)
-MSG		= Neuron activation
+MSG	= Neuron activation
 
 ##########################
 ## COMPILATION VARIABLE ##
@@ -34,23 +34,23 @@ MSG		= Neuron activation
 
 ## Sources folder of the target(s) service(s).
 ##############################################
-SRC		= $(filter-out $(LIST), $(shell grep -so '\[.*\]' $(INI) | sed 's/"//g' | sed 's/\[//g' | sed 's/\]//g'))
+SRC	= $(filter-out $(LIST), $(shell grep -so '\[.*\]' $(INI) | sed 's/"//g' | sed 's/\[//g' | sed 's/\]//g'))
 
 ## Rule name, delete each container(s) & image(s).
 ##################################################
-CLN		= $(addprefix clean_, $(SRC))
+CLN	= $(addprefix clean_, $(SRC))
 
 ## Rule name, create & build each container(s) images with docker-compose.yml.
 ##############################################################################
-CMP		= $(addprefix compose_, $(SRC))
+CMP	= $(addprefix compose_, $(SRC))
 
 ## [PANIC] Rule name, purge the executable(s) / generated file(s)
 #################################################################
-PRG		= $(addprefix purge_, $(SRC))
+PRG	= $(addprefix purge_, $(SRC))
 
 ## Rule name, upload each prod images.
 ######################################
-UPD		= $(addprefix upload_, $(SRC))
+UPD	= $(addprefix upload_, $(SRC))
 
 ########################
 ## ARGUMENTS VARIABLE ##
@@ -64,10 +64,10 @@ LIST	= network mailer database
 ###############################
 CARD	= $(shell ip route | grep -m1 default | cut -d ' ' -f5)
 HOST	= "[mailer]=null:25\n[dbms]=Wan:12000\n[adminer]=Wan:8080\n[backend]=Lan:12001\n[frontend]=Wan:443\n"
-WAN		= $(shell ip route | grep $(CARD) | tail +2 | cut -d ' ' -f9)
-LAN		= $(shell hostname -i)
+WAN	= $(shell ip route | grep $(CARD) | tail +2 | cut -d ' ' -f9)
+LAN	= $(shell hostname -i)
 ## Use your dockerhub account or default to my account (may breack stuff in the longue run, change ornsolot for an official account)
-USR		= $(or $(shell docker info | sed '/Username:/!d;s/.* //'), "ornsolot")
+USR	= $(or $(shell docker info | sed '/Username:/!d;s/.* //'), "ornsolot")
 
 ## [MAILER] mailer variables.
 #############################
@@ -83,8 +83,8 @@ KEY 	= KQuvIoaqRRB0GKJY
 ## BACKEND initialisations values.
 ##################################
 MAIL	= bluewave@kaz.bzh
-PWD		= _norpUpgaw1_
-KEY		= SeKr3T
+PWD	= _norpUpgaw1_
+KEY	= SeKr3T
 
 #######################
 ## MAKEFILE VARIABLE ##
