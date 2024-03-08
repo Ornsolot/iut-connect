@@ -13,9 +13,9 @@
 ## Name and Path of the executable/project.
 ###########################################
 NAME	= ${PROJ}_${TRG}
-DIR		= ./src
-EXE		= dockerfile
-TRG		= $(shell basename $(shell pwd))
+DIR	= ./src
+EXE	= dockerfile
+TRG	= $(shell basename $(shell pwd))
 
 ##################
 ## ENV VARIABLE ##
@@ -25,7 +25,7 @@ TRG		= $(shell basename $(shell pwd))
 ############
 HOST	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^$(patsubst '%',%, $(shell sed -nr "/^\[${TRG}\]/ { :l /^Host[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
 CARD	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^Card[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
-HUB		= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^User[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
+HUB	= $(patsubst '%',%, $(shell sed -nr "/^\[network\]/ { :l /^User[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI)))
 
 ## [DOCKER]
 ###########
@@ -33,9 +33,9 @@ BASE	= $(shell sed -nr "/^\[database\]/ { :l /^Name[ ]*=/ { s/[^=]*=[ ]*//; p; q
 USER	= $(shell sed -nr "/^\[database\]/ { :l /^User[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI))
 PSWD	= $(shell sed -nr "/^\[database\]/ { :l /^Pswd[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI))
 PORT	= $(shell sed -nr "/^\[$(TRG)\]/ { :l /^Port[ ]*=/ { s/[^=]*=[ ]*//; p; q;}; n; b l;}" $(INI))
-IMG		= postgres
-SQL		= ./app/$(TRG)/src/table.sql
-TAG		= alpine
+IMG	= postgres
+SQL	= ./app/$(TRG)/src/table.sql
+TAG	= alpine
 
 ######################
 ## MAKEFILE VARIABLE #
